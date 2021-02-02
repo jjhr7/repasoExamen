@@ -27,8 +27,13 @@ public class Fragment1 extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private Button b1;
     private Button b2;
+    private Button b3;
+    private Button b4;
     private Button bMas;
+    private Button bIgual;
+    public String res = "";
 
 
     // TODO: Rename and change types of parameters
@@ -74,15 +79,54 @@ public class Fragment1 extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_1, container, false);
         b2 = v.findViewById(R.id.button4);
+        b1 = v.findViewById(R.id.button5);
+        b3 = v.findViewById(R.id.button8);
+        b4 = v.findViewById(R.id.button7);
         bMas = v.findViewById(R.id.button2);
+        bIgual = v.findViewById(R.id.button6);
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Escribir texto del boton
+                res += b2.getText();
+
                 //Permisos HARA FALTA DECLARAR LOS PERMISOS EN EL MANIFEST
                 solicitarPermisoLocalizaciones(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,
                         "Se necesita permiso de ubicaión", 1);
                 Intent intent = new Intent(getContext(), ServicioLocalizacion.class);
                 getActivity().startService(intent);
+
+
+            }
+        });
+
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Escribir texto del boton
+                res += b4.getText();
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Escribir texto del boton
+                res += b3.getText();
+            }
+        });
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Escribir texto del boton
+                res += b1.getText();
+
+                //Duplicar res
+                if (res.length()<5){
+                    bIgual.setText(res + res);
+                }else{
+                    //El boton no debe tener mas de 10 caracteres
+                    bIgual.setText("=");
+                }
 
             }
         });
