@@ -1,12 +1,18 @@
 package com.example.jjherram.repasoexamen;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +25,7 @@ public class Fragment1 extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private Button b2;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -58,9 +65,45 @@ public class Fragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_1, container, false);
+        b2 = v.findViewById(R.id.button4);
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Permisos HARA FALTA DECLARAR LOS PERMISOS EN EL MANIFEST
+                solicitarPermisoLocalizaciones(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,
+                        "Se necesita permiso de ubicaión", 1);
+                Intent intent = new Intent(getContext(), ServicioLocalizacion.class);
+                getActivity().startService(intent);
+
+            }
+        });
 
         return v;
+    }
+
+
+    //Funcion para solicitar los permisos de localizacion HARA FALTA DECLARAR EL SERVICIO EN EL MANIFEST
+    public void solicitarPermisoLocalizaciones(final String fine, final String corase, String
+            justificacion, final int requestCode/*, final View.OnClickListener actividad*/) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), fine)){
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Solicitud de permiso")
+                    .setMessage(justificacion)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            ActivityCompat.requestPermissions(getActivity()/*(Activity) actividad*/,
+                                    new String[]{fine}, requestCode);
+                            ActivityCompat.requestPermissions(getActivity()/*(Activity) actividad*/,
+                                    new String[]{corase}, requestCode);
+                        }}).show();
+
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{fine}, requestCode);
+        }
     }
 }

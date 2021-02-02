@@ -2,11 +2,15 @@ package com.example.jjherram.repasoexamen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //Pestañas
         ViewPager2 viewPager = findViewById(R.id.viewpager);
@@ -59,4 +64,8 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
+
+
+
 }
