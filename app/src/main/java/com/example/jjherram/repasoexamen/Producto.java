@@ -1,4 +1,4 @@
-package com.example.jjherram.repasoexamen.ExamenAngle;
+package com.example.jjherram.repasoexamen;
 
 public class Producto {
     public long Dia;
