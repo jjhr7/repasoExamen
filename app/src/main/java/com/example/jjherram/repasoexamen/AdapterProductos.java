@@ -34,9 +34,16 @@ public class AdapterProductos extends RecyclerView.Adapter<AdapterProductos.Pord
     public void onBindViewHolder(@NonNull PorductHolder holder, int position) {
         Producto producto=productos.get(position);
 
-        holder.dia.setText(producto.getDia()+"");
-        holder.semana.setText(producto.getDiaSemana()+"");
-        holder.precio.setText(producto.getPrecio()+"");
+        holder.dia.setText("Dia: "+producto.getDia()+"");
+        holder.semana.setText("Semana: "+producto.getDiaSemana()+"");
+        holder.precio.setText("Precio: "+producto.getPrecio()+"");
+
+        //ejer 7 -> Imagenes , se ha añadido al drawable las 2 IMAGENES
+        if(producto.getDiaSemana().equals("sab")){
+            holder.img.setImageResource(R.drawable.rojo);
+        }else{
+            holder.img.setImageResource(R.drawable.normal);
+        }
 
     }
 
