@@ -3,6 +3,8 @@ package com.example.jjherram.repasoexamen;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,11 +54,15 @@ public class Fragment2 extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
+    //algoritmo
     static long DIAS[] = {1,3,8,10,13,20,29};
     static  String DIAS_SEMANA[]={"lun", "jue", "lun", "jue", "sab", "sab", "lun"};
     static double PRECIOS[]={1.2,1.1,1.2,1.1,1.2,1.3,1.2};
     public ArrayList<Producto> prods= new ArrayList<>();
+    //rv
+    private RecyclerView recyclerView;
+    //adapter
+    private AdapterProductos adapterProductos;
 
 
     @Override
@@ -73,7 +79,7 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_2, container, false);
-
+        //algoritmo
         CreaPojos();
         Map medias = new HashMap();
         Set<String> nombres = new HashSet();
@@ -142,6 +148,16 @@ public class Fragment2 extends Fragment {
         }
 
         Log.d("DIA_MAYOR", finalResult.toString());
+
+
+        //RECYCLERView
+        recyclerView=v.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+
+        adapterProductos=new AdapterProductos(prods,getContext());
+        recyclerView.setAdapter(adapterProductos);
+
+
 
         return v;
     }
