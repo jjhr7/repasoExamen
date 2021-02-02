@@ -13,9 +13,15 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
+    //ANGLE PRESIDENTE
+    //Añañin
+    //tab layout
+    //2 actividades
+    //recycler view con info de los pojos
+    //pulsar un boton lanzar actividad en primer plano
+    //pedir permisos
     // Nombres de las pestañas
     private String[] nombres = new String[]{"Pestaña 1","Pestaña 2"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
